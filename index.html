@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         :root {
+            --pink: #ff4d94;
+            --purple: #7f5af0;
+            --bg: #0b1020;
+        }
+        
+        body {
+            background: radial-gradient(circle at top, rgba(255, 77, 148, 0.1), #0b1020);
+            height: 100vh;
+        }
+        
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #ff4d94, #7f5af0);
+            transform-style: preserve-3d;
+            animation: spin 20s linear infinite alternate;
+            cursor: pointer;
+        }
+        
+        .faces {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            text-align: center;
+            padding: 10px;
+            color: white;
+        }
+        
+        .box .front {
+            transform: translateZ(160px);
+            background: url(./img/img1.jpeg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .box .back {
+            transform: rotateY(180deg) translateZ(160px);
+            background: url(./img/img2.jpeg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .box .left {
+            transform: rotateY(-90deg) translateZ(160px);
+            background: url(./img/img3.jpeg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .box .right {
+            transform: rotateY(90deg) translateZ(160px);
+            background: url(./img/img1.jpeg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .box .top {
+            transform: rotateX(90deg) translateZ(160px);
+            background: url(./img/img2.jpeg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .box .bottom {
+            transform: rotateX(-90deg) translateZ(160px);
+            background: url(./img/img3.jpeg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .box .faces .text {
+            width: 0;
+            overflow: hidden;
+            border-right: 3px solid #fff;
+            white-space: wrap;
+            /* blinking cursor */
+            animation: typing 8s steps(30, end) infinite alternate, blink 0.7s step-end infinite;
+        }
+        
+        .container {
+            color: #fff;
+            position: absolute;
+            top: 30px;
+            width: 100%;
+        }
+        
+        .container h2 {
+            text-align: center;
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotateX(360deg) rotateY(-360deg);
+            }
+            to {
+                transform: rotateX(0) rotateY(20deg);
+            }
+        }
+        /* } */
+        
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        @keyframes blink {
+            50% {
+                border-color: transparent
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>
+            💖 “Infinite Feelings, Infinite Words ♾️” 💖
+        </h2>
+    </div>
+    <div class="box">
+        <div class="faces front">
+            <h6 class="text">You are truly one of the most special people in my life.</h6>
+        </div>
+        <div class="faces back">
+            <h6 class="text">You hold a place in my heart that no one else can replace.</h6>
+        </div>
+        <div class="faces left">
+            <h6 class="text">You bring light and warmth into my days.</h6>
+        </div>
+        <div class="faces right">
+            <h6 class="text">Your smile always makes everything feel brighter.</h6>
+        </div>
+        <div class="faces top">
+            <h6 class="text">You inspire me with your kindness and strength.</h6>
+        </div>
+        <div class="faces bottom">
+            <h6 class="text">You are a blessing I’ll always be grateful for.</h6>
+        </div>
+    </div>
+    <script>
+        const box = document.querySelector('.box');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let boxX = mouseX;
+        let boxY = mouseY;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+        });
+
+        function animate() {
+            boxX += (mouseX - boxX) * 0.1;
+            boxY += (mouseY - boxY) * 0.1;
+
+            box.style.left = boxX + "px";
+            box.style.top = boxY + "px";
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>
